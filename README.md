@@ -159,14 +159,14 @@ The following code is sufficient to import a sub set of the GloVe embeddings.
 ```python
 from wombat_api.core import connector as wb_conn
 wbpath="data/wombat-data/"
-importpath="data/embeddings/glove.6B/"
+importpath="data/embeddings/glove.42B/"
 
 wbc = wb_conn(path=wbpath, create_if_missing=True)
 
-for d in ['50', '100', '200', '300']:
-    for n in ['none', 'abtt']:
-        wbc.import_from_file(importpath+"glove.6B."+d+"d.txt", 
-                             "algo:glove;dataset:6b;dims:"+d+";fold:1;unit:token;norm:"+n, 
+for d in ['300']:
+    for n in ['none']:
+        wbc.import_from_file(importpath+"glove.42B."+d+"d.txt", 
+                             "algo:glove;dataset:42b;dims:"+d+";fold:1;unit:token;norm:"+n, 
                              normalize=n, 
                              prepro_picklefile="")
 ```
@@ -224,7 +224,7 @@ from wombat_api.core import connector as wb_conn
 wbpath="data/wombat-data/"
 wbc = wb_conn(path=wbpath, create_if_missing=False)
 
-wec_ids="algo:glove;dataset:6b;dims:50;fold:1;unit:token;norm:{none,abtt}"
+wec_ids="algo:glove;dataset:42b;dims:300;fold:1;unit:token;norm:none"
 
 vecs = wbc.get_vectors(wec_ids, {}, 
                        for_input=[['this','is','a', 'test'], ['yet', 'another', 'test']], 
